@@ -4,15 +4,19 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.renan.domain.Carro;
 import br.com.renan.domain.Garagem;
 import br.com.renan.domain.Moto;
 import br.com.renan.domain.Veiculo;
+import br.com.renan.infra.HibernateUtil;
 
 public class QueryPolimorficaTest {
-	
+
 	private Garagem garagem;
 
 	@Test
@@ -20,13 +24,23 @@ public class QueryPolimorficaTest {
 		List<Veiculo> veiculos = garagem.lista();
 		assertEquals(2, veiculos.size());
 	}
-	
-	
+
 	private void load() {
 		Veiculo carro = new Carro("XXX-9999");
 		Veiculo moto = new Moto("YYY-9999");
-		
+
 		garagem.compra(carro);
 		garagem.compra(moto);
+	}
+
+	@Before
+	public void setUp() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+
+		load();
+		
+		tx.commit();
+		session.close();
 	}
 }
