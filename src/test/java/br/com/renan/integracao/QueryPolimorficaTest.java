@@ -14,6 +14,7 @@ import br.com.renan.domain.Garagem;
 import br.com.renan.domain.Moto;
 import br.com.renan.domain.Veiculo;
 import br.com.renan.infra.HibernateUtil;
+import br.com.renan.infra.VeiculoDAOHibernate;
 
 public class QueryPolimorficaTest {
 
@@ -38,6 +39,8 @@ public class QueryPolimorficaTest {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
+		garagem = new VeiculoDAOHibernate(session);
+		
 		load();
 		
 		tx.commit();

@@ -1,5 +1,6 @@
 package br.com.renan.infra;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -16,7 +17,7 @@ public class VeiculoDAOHibernate implements Garagem {
 	}
 	
 	public List<Veiculo> lista() {
-		return null;
+		return new ArrayList<Veiculo>();
 	}
 
 	public void compra(Veiculo veiculo) {
