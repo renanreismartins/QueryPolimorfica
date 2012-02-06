@@ -11,6 +11,10 @@ public class VeiculoDAOHibernate implements Garagem {
 
 	private Session session;
 	
+	public VeiculoDAOHibernate(Session session) {
+		this.session = session;
+	}
+	
 	public List<Veiculo> lista() {
 		return null;
 	}
