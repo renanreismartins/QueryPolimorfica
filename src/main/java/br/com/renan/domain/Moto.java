@@ -1,6 +1,5 @@
-package br.com.renan.integracao;
+package br.com.renan.domain;
 
-import br.com.renan.domain.Veiculo;
 
 public class Moto implements Veiculo {
 

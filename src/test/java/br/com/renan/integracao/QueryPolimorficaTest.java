@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import br.com.renan.domain.Carro;
 import br.com.renan.domain.Garagem;
+import br.com.renan.domain.Moto;
 import br.com.renan.domain.Veiculo;
 
 public class QueryPolimorficaTest {
