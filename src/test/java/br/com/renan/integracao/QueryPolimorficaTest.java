@@ -1,6 +1,6 @@
 package br.com.renan.integracao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -10,30 +10,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.renan.domain.Carro;
-import br.com.renan.domain.Garagem;
-import br.com.renan.domain.Moto;
-import br.com.renan.domain.Veiculo;
+import br.com.renan.domain.Notificador;
+import br.com.renan.domain.Notificavel;
+import br.com.renan.domain.Pessoa;
+import br.com.renan.domain.Sistema;
 import br.com.renan.infra.HibernateUtil;
-import br.com.renan.infra.VeiculoDAOHibernate;
+import br.com.renan.infra.NotificadorDAOHibernate;
 
 public class QueryPolimorficaTest {
 	private Session session;
 
-	private Garagem garagem;
+	private Notificador notificador;
 
 	@Test
 	public void deveRetornarDoisVeiculos() {
-		List<Veiculo> veiculos = garagem.lista();
-		assertEquals(2, veiculos.size());
+		List<Notificavel> notificaveis = notificador.lista();
+		assertEquals(2, notificaveis.size());
 	}
 
 	private void load() {
-		Veiculo carro = new Carro("XXX-9999");
-		Veiculo moto = new Moto("YYY-9999");
+		Notificavel pessoa = new Pessoa("Renan");
+		Notificavel sistema = new Sistema("Twitter");
 
-		garagem.compra(carro);
-		garagem.compra(moto);
+		notificador.add(pessoa);
+		notificador.add(sistema);
 	}
 
 	@Before
@@ -41,12 +41,12 @@ public class QueryPolimorficaTest {
 		session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		garagem = new VeiculoDAOHibernate(session);
+		notificador = new NotificadorDAOHibernate(session);
 		load();
-		
+
 		tx.commit();
 	}
-	
+
 	@After
 	public void setDown() {
 		session.close();

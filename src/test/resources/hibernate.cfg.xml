@@ -17,7 +17,7 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 
-		<mapping class="br.com.renan.domain.Carro" />
-		<mapping class="br.com.renan.domain.Moto" />
+		<mapping class="br.com.renan.domain.Pessoa" />
+		<mapping class="br.com.renan.domain.Sistema" />
 	</session-factory>
 </hibernate-configuration>
